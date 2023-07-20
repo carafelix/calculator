@@ -1,0 +1,27 @@
+    // variables
+        @mixin flexC{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    //
+    
+    
+    *{
+        box-sizing: border-box;
+    }
+    
+    html{
+        
+        min-height: 100vh;
+        min-width: 100vh;
+        @include flexC();
+
+    }
+
+    body{
+        @include flexC();
+
+    }
+
+    
