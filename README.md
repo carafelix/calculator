@@ -9,3 +9,4 @@ calculator calculating arithmetics, its becoming quite fun i must say
 - display obj
 - pixel like screen (maybe dom draw?), probably just grid green background plus calculator font
 - keyboard also triggers buttons :focus
+- make it draggable "transform: translate(-169px, -7px);" + Mouse position, mouse down and mouseup listeners?
