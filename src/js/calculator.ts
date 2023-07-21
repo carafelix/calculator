@@ -1,3 +1,9 @@
+// ---------- nodes 
+
+const numbers = document.querySelectorAll('.number button');
+const operators = document.querySelectorAll('.operator button');
+const commands = document.querySelectorAll('.command button');
+
 // ---------- operatorial functions
 
 function sum (a:number,b:number):number{
@@ -22,9 +28,9 @@ function modulo (a:number,b:number):number{
 
 // ---------- operatorial variables
 
-let operandA:number;
+let operandA:number;        let preOperandA:string = '';
 let operator:string;
-let operandB:number;
+let operandB:number;        let preOperandB:string = '';
 
 
 function operate(a:number | string, op:string,  b:number) :number | void {
@@ -56,9 +62,25 @@ function operate(a:number | string, op:string,  b:number) :number | void {
 
     } else if (op === '=' && typeof a === 'string' && typeof b === 'number'){
 
-        return //make gobal object variable
+        return // add str to object variable
 
     } else {
         throw new Error('what are you doing?');
+    }
+}
+
+// ----------- listener functions 
+
+numbers.forEach((n) => n.addEventListener('click', (e)=>asignOperand(e) ));
+document.addEventListener('keydown', (e)=>asignOperand(e))
+
+
+// add number to operand, if A as a value, add it to B
+
+function asignOperand(e: Event){
+    if (e instanceof MouseEvent && e.target instanceof HTMLButtonElement){
+        preOperandA += (e.target.innerText)
+    } else if (e instanceof KeyboardEvent){
+        console.log(e)
     }
 }
