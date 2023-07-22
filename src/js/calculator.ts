@@ -174,7 +174,7 @@ function addFloat(){
         if (!preOperandB.includes('.')){
             preOperandB += '.';
         }
-    } else if (preOperandA){
+    } else if (preOperandA && operator === ''){
         if (!preOperandA.includes('.')){
             preOperandA += '.'
         }    
