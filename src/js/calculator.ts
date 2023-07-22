@@ -1,70 +1,51 @@
-// ---------- nodes 
+// ---------- nodes // I think I can do much better with a OOP approach. Calculation could be an object like n1 op n2, result function
 
-const numbers = document.querySelectorAll('.number button');
+const numbers = document.querySelectorAll('.number button'); // infered 'as NodeListOf<HTMLButtonElement'>
 const operators = document.querySelectorAll('.operator button');
-const commands = document.querySelectorAll('.command button');
+
+const float = document.querySelector('#float');
+const equal = document.querySelector('#equal');
+const backspace = document.querySelector('#backspace');
+const clear = document.querySelector('#clear');
+
 const log = document.querySelector('#log');
 const result = document.querySelector('#result');
 
-// ---------- operatorial functions
-
-function sum (a:number,b:number):number{
-    return a+b
-}
-function substract (a:number,b:number):number{
-    return a-b
-}
-function divide (a:number,b:number):number{
-    return a/b
-}
-function multiply (a:number,b:number):number{
-    return a*b
-}
-function factor (a:number,b:number):number{
-    return a**b
-}
-
-function modulo (a:number,b:number):number{
-    return a%b
-}
 
 // ---------- operatorial variables
 
 let preOperandA:string = '';
-let operandA:number;      
-
 let operator:string = '';
-
 let preOperandB:string = '';
-let operandB:number;     
 
+// ---------- operatorial function
 
 function operate(a:number | string, op:string,  b:number) :number {
     
     
     if (op === '+' && typeof a === 'number' ){
 
-        return sum(a,b);
+        return a+b;
 
     } else if(op === '-' && typeof a === 'number'){
 
-        return substract(a,b);
+        return a-b;
 
     } else if (op === '/' && typeof a === 'number'){
 
-        return divide(a,b);
+        return a/b;
 
     } else if (op === '*' && typeof a === 'number'){
 
-        return multiply(a,b);
+        return a*b;
 
     } else if (op === '^' && typeof a === 'number'){
 
-        return factor(a,b);
+        return a**b;
 
     } else if (op === '%' && typeof a === 'number'){
 
-        return modulo(a,b);
+        return a%b;
 
     } else if (op === '=' && typeof a === 'string' && typeof b === 'number'){
 
@@ -80,6 +61,7 @@ function operate(a:number | string, op:string,  b:number) :number {
 
 numbers.forEach((n) => n.addEventListener('click', (e)=>asignOperand(e) ));
 operators.forEach((n) => n.addEventListener('click', (e)=>asignOperator(e) ));
+equal!.addEventListener('click', ()=>commandEqual());
 
 
 // add number to operand, if A as a value, add it to B
@@ -115,3 +97,14 @@ function asignOperator(e: Event){
     //update display function
 
 }
+
+function commandEqual(){
+    if (preOperandA !== '' && operator !== '' && preOperandB !== '') {
+        let operandA = +(preOperandA);
+        let operandB = +(preOperandB);
+        console.log(operate(operandA,operator,operandB))
+        return operate(operandA,operator,operandB).toFixed(3)
+    }
+}
+
+
