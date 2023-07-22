@@ -26,33 +26,17 @@ function operate(a:number | string, op:string,  b:number) :number {
     
     
     if (op === '+' && typeof a === 'number' ){
-
         return a+b;
-
     } else if(op === '-' && typeof a === 'number'){
-
         return a-b;
-
     } else if (op === '/' && typeof a === 'number'){
-
         return a/b;
-
     } else if (op === '*' && typeof a === 'number'){
-
         return a*b;
-
     } else if (op === '^' && typeof a === 'number'){
-
         return a**b;
-
     } else if (op === '%' && typeof a === 'number'){
-
         return a%b;
-
-    } else if (op === '=' && typeof a === 'string' && typeof b === 'number'){
-
-        return NaN // add str to object variable
-
     } else {
         throw new Error('what are you doing?');
     }
@@ -72,6 +56,12 @@ backspace!.addEventListener('click', ()=>doBackspace());
 // add number to operand, if A as a value, add it to B
 
 function getOperand(e: Event){
+
+    if (toggle === true && operator == ''){
+        preOperandA = '';
+        toggle = false;
+    }
+
     if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
         e.target.dataset.key &&
