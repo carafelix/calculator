@@ -57,6 +57,11 @@ float?.addEventListener('mousedown', ()=>addFloat());
 allButtons.forEach((b)=>b.addEventListener('mousedown', (e)=>buttonColor(e)));
 allButtons.forEach((b)=>b.addEventListener('mouseup', (e)=>buttonColor(e)));
 
+document.addEventListener('keydown', (e)=>keyboardSupport(e));
+window.addEventListener('keydown', (e)=>keyboardColor(e));
+window.addEventListener('keyup', (e)=>keyboardUnColor(e));
+
+
 
 
 // add number to operand, if A as a value, add it to B
@@ -189,6 +194,29 @@ function buttonColor(e: Event){
         }
 }
 
+function keyboardSupport(e: Event){
+
+}
+
+function keyboardColor(e: KeyboardEvent){
+    const press = document.querySelector(`button[data-key="${e.key}"]`) as HTMLButtonElement;
+
+    if (press?.dataset.key === '/'){
+        e.preventDefault()
+        press.classList.add('focus');
+
+    }else if(press){
+        press.classList.add('focus');
+    }
+}
+
+function keyboardUnColor(e: KeyboardEvent){
+    const press = document.querySelector(`button[data-key="${e.key}"]`);
+
+    if(press){
+        press.classList.remove('focus');
+    }
+}
 
 
 
