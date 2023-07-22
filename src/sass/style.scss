@@ -225,16 +225,20 @@
                 grid-column: 3;
             }
             #git{
-
                 grid-row: 1;
                 grid-column: 4;
 
                 a{
                     button{
+                        
                         img{
+                            pointer-events: none;
                             width: 35px;
                             height: 35px;
                         }
+                    }
+                    button.focus{
+                        background-color: #151515;
                     }
                 }
             }

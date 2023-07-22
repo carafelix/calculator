@@ -76,7 +76,7 @@ function getOperand(e: Event){
         operator === '' && preOperandB === ''){
 
             if(e.target.dataset.key === 'pi'){
-                preOperandA = '3.141592654'
+                preOperandA = '3.141'
             } else{
                 preOperandA += e.target.dataset.key;
             }
@@ -88,7 +88,7 @@ function getOperand(e: Event){
         preOperandA !== '' && operator !== ''){
 
             if(e.target.dataset.key === 'pi'){
-                preOperandB = '3.141592654'
+                preOperandB = '3.141'
             } else{
                 preOperandB += e.target.dataset.key;
             }
