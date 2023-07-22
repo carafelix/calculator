@@ -91,6 +91,7 @@
         height: 1.7em;
         width: 314px;
         align-items: center;
+        overflow-y: hidden;
     }
 
     #result{
@@ -193,6 +194,7 @@
                     content: '÷';
                     position: absolute;
                     visibility: visible ;
+                    pointer-events: none;
                 }
             }
             #multiply{
@@ -205,7 +207,8 @@
                     button span::after{
                         content: '×';
                         position: absolute;
-                        visibility: visible ;
+                        visibility: visible;
+                        pointer-events: none;
                     }
             }
             #factor{
