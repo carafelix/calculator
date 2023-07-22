@@ -57,35 +57,45 @@ function operate(a:number | string, op:string,  b:number) :number {
 }
 
 // ----------- listener functions 
-//document.addEventListener('keydown', (e)=>asignOperand(e))
+//document.addEventListener('keydown', (e)=>getOperand(e))
 
-numbers.forEach((n) => n.addEventListener('click', (e)=>asignOperand(e) ));
-operators.forEach((n) => n.addEventListener('click', (e)=>asignOperator(e) ));
-equal!.addEventListener('click', ()=>commandEqual());
-clear!.addEventListener('click', ()=>clearAll())
+numbers.forEach((n) => n.addEventListener('click', (e)=>getOperand(e) ));
+operators.forEach((n) => n.addEventListener('click', (e)=>getOperator(e) ));
+equal?.addEventListener('click', ()=>commandEqual());
+clear?.addEventListener('click', ()=>clearAll());
+float?.addEventListener('click', ()=>addFloat())
 
 
 // add number to operand, if A as a value, add it to B
 
-function asignOperand(e: Event){
+function getOperand(e: Event){
     if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
         e.target.dataset.key &&
         operator === '' && preOperandB === ''){
 
-        preOperandA += e.target.dataset.key;
+            if(e.target.dataset.key === 'pi'){
+                preOperandA = '3.141592654'
+            } else{
+                preOperandA += e.target.dataset.key;
+            }
+        updateLog()    
 
     } else if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
         e.target.dataset.key &&
         preOperandA !== '' && operator !== ''){
 
-            preOperandB += e.target.dataset.key;
-
+            if(e.target.dataset.key === 'pi'){
+                preOperandB = '3.141592654'
+            } else{
+                preOperandB += e.target.dataset.key;
+            }
+        updateLog()
         }
 }
 
-function asignOperator(e: Event){
+function getOperator(e: Event){
 
     if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
@@ -95,7 +105,7 @@ function asignOperator(e: Event){
                operator = e.target.dataset.key
     }
 
-    //update display function
+    updateLog()
 
 }
 
@@ -112,14 +122,18 @@ function commandEqual(){
 }
 
 function updateResult(n:number){
-    if (result){
-        result.innerText = n.toLocaleString('en');
-    }
+
+    result.innerText = n.toLocaleString('en');    
+    log.innerText = `${preOperandA} ${operator} ${preOperandB} =`;
 
     preOperandA = `${n}`
     preOperandB = '';
     operator = '';
 
+}
+
+function updateLog(){
+        log.innerText = `${preOperandA} ${operator} ${preOperandB}`
 }
 
 function clearAll(){
@@ -128,5 +142,9 @@ function clearAll(){
     operator = '';
     result.innerText = '0';
     log.innerText = '';
+}
+
+function addFloat(){
+
 }
 
