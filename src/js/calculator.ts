@@ -30,12 +30,16 @@ function modulo (a:number,b:number):number{
 
 // ---------- operatorial variables
 
-let operandA:number;        let preOperandA:string = '';
+let preOperandA:string = '';
+let operandA:number;      
+
 let operator:string = '';
-let operandB:number;        let preOperandB:string = '';
+
+let preOperandB:string = '';
+let operandB:number;     
 
 
-function operate(a:number | string, op:string,  b:number) :number | void {
+function operate(a:number | string, op:string,  b:number) :number {
     
     
     if (op === '+' && typeof a === 'number' ){
@@ -64,7 +68,7 @@ function operate(a:number | string, op:string,  b:number) :number | void {
 
     } else if (op === '=' && typeof a === 'string' && typeof b === 'number'){
 
-        return // add str to object variable
+        return NaN // add str to object variable
 
     } else {
         throw new Error('what are you doing?');
