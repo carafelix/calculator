@@ -59,6 +59,8 @@ function getOperand(e: Event){
 
     if (toggle === true && operator == ''){
         preOperandA = '';
+        result.innerText = '0';    
+
         toggle = false;
     }
 
@@ -117,7 +119,7 @@ function commandEqual(){
 
 function updateResult(n:number){
 
-    result.innerText = n.toLocaleString('en');    
+    result.innerText = `${n}`   
     log.innerText = `${preOperandA} ${operator} ${preOperandB} =`;
 
     preOperandA = `${n}`
