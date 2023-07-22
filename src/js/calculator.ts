@@ -50,6 +50,7 @@ operators.forEach((n) => n.addEventListener('click', (e)=>getOperator(e) ));
 equal!.addEventListener('click', ()=>commandEqual());
 clear!.addEventListener('click', ()=>clearAll());
 backspace!.addEventListener('click', ()=>doBackspace());
+float!.addEventListener('click', ()=>addFloat());
 
 
 
@@ -119,13 +120,16 @@ function commandEqual(){
 
 function updateResult(n:number){
 
-    result.innerText = `${n}`   
     log.innerText = `${preOperandA} ${operator} ${preOperandB} =`;
 
     preOperandA = `${n}`
     preOperandB = '';
     operator = '';
+    if (preOperandA.includes('.')){
+        result.innerText = `${n.toFixed(3)}`;   
+    } else result.innerText = `${n}` ;  
 
+    
 }
 
 function updateLog(){
@@ -141,7 +145,17 @@ function clearAll(){
 }
 
 function doBackspace(){
-    if (preOperandA){
+    if (preOperandB){
+        let holdmethis = preOperandB.split('');
+        holdmethis.pop();
+        preOperandB = holdmethis.join('');
+    } else if (operator){
+
+        let holdmethis = operator.split('');
+        holdmethis.pop();
+        operator = holdmethis.join('');
+
+    } else if (preOperandA){
         let holdmethis = preOperandA.split('');
         holdmethis.pop();
         preOperandA = holdmethis.join('');
@@ -149,5 +163,18 @@ function doBackspace(){
     updateLog()
 }
 
+function addFloat(){
+
+    if (preOperandB){
+        if (!preOperandB.includes('.')){
+            preOperandB += '.';
+        }
+    } else if (preOperandA){
+        if (!preOperandA.includes('.')){
+            preOperandA += '.'
+        }    
+    }  
+    updateLog()
+}
 
 
