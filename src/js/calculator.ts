@@ -83,15 +83,17 @@ operators.forEach((n) => n.addEventListener('click', (e)=>asignOperator(e) ));
 function asignOperand(e: Event){
     if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
+        e.target.dataset.key &&
         operator === '' && preOperandB === ''){
 
-        preOperandA += e.target.innerText;
+        preOperandA += e.target.dataset.key;
 
     } else if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
+        e.target.dataset.key &&
         preOperandA !== '' && operator !== ''){
 
-            preOperandB += e.target.innerText;
+            preOperandB += e.target.dataset.key;
 
         }
 }
@@ -100,15 +102,10 @@ function asignOperator(e: Event){
 
     if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
+        e.target.dataset.key &&
         preOperandA !== '' && preOperandB === ''){
             
-            if(e.target.lastChild instanceof HTMLSpanElement &&
-               e.target.lastChild.textContent){
-               operator = e.target.lastChild.textContent;
-            }
-            else{
-                operator = e.target.innerText;
-            }
+               operator = e.target.dataset.key
     }
 
     //update display function
