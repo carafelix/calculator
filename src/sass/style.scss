@@ -112,7 +112,6 @@
             *{
                 @include flexC();
                     button{
-                        background-color: $grey;
                         flex:   1;
                         border: 1px solid $black;
                     }
@@ -125,13 +124,6 @@
                 min-height: 50px;
                 border-radius: 5px;
             }
-            button:hover{
-                background-color: #3c3c3c;
-            }
-            button:focus{
-                background-color: #151515; // do the add clase remove class thing my lord
-            }
-           
 
             #zero{
                grid-row: 5; 
@@ -167,12 +159,6 @@
                 grid-row: 1;
                 grid-column: 6 / 5;
                 font-size: 12px;
-                    button{
-                        background-color: $red;
-                    }
-                    button:hover{
-                        background-color: $redhover;
-                    }
                 
             }
             #clear{
@@ -231,11 +217,8 @@
                 grid-column: 5 ;
                 button{
                     min-height: 106px;
-                    background-color: $green;
                 }
-                button:hover{
-                    background-color: $greenhover;
-                }
+                
             }
             #pi{
                 grid-row: 1;
@@ -257,4 +240,39 @@
             }
             
             
+    }back
+
+    button {
+        background-color: $grey;
     }
+
+    button:hover{
+        background-color: #3c3c3c;
+    }
+
+    button.grey.focus{
+        background-color: #151515;
+    }
+
+    button.backspace{
+        background-color: $red;
+    }
+    button.backspace:hover{
+        background-color: $redhover;
+    }
+
+    button.backspace.focus{
+        background-color: $redfocus
+    }
+   
+    button.equal{
+        background-color: $green;
+    }
+    button.equal:hover{
+        background-color: $greenhover;
+    }
+    button.equal.focus{
+        background-color: $greenfocus;
+    }
+   
+ 

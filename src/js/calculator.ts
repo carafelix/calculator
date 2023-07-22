@@ -11,6 +11,8 @@ const clear = document.querySelector('#clear');
 const log = document.querySelector('#log') as HTMLDivElement;
 const result = document.querySelector('#result') as HTMLDivElement;
 
+const allButtons = document.querySelectorAll('button');
+
 
 // ---------- operatorial variables
 
@@ -45,12 +47,15 @@ function operate(a:number | string, op:string,  b:number) :number {
 // ----------- listener functions 
 //document.addEventListener('keydown', (e)=>getOperand(e))
 
-numbers.forEach((n) => n.addEventListener('click', (e)=>getOperand(e) ));
-operators.forEach((n) => n.addEventListener('click', (e)=>getOperator(e) ));
-equal!.addEventListener('click', ()=>commandEqual());
-clear!.addEventListener('click', ()=>clearAll());
-backspace!.addEventListener('click', ()=>doBackspace());
-float!.addEventListener('click', ()=>addFloat());
+numbers.forEach((n) => n.addEventListener('mousedown', (e)=>getOperand(e) ));
+operators.forEach((n) => n.addEventListener('mousedown', (e)=>getOperator(e) ));
+equal?.addEventListener('mousedown', ()=>commandEqual());
+clear?.addEventListener('mousedown', ()=>clearAll());
+backspace?.addEventListener('mousedown', ()=>doBackspace());
+float?.addEventListener('mousedown', ()=>addFloat());
+
+allButtons.forEach((b)=>b.addEventListener('mousedown', (e)=>buttonColor(e)));
+allButtons.forEach((b)=>b.addEventListener('mouseup', (e)=>buttonColor(e)));
 
 
 
@@ -176,5 +181,14 @@ function addFloat(){
     }  
     updateLog()
 }
+
+function buttonColor(e: Event){
+    if (e instanceof MouseEvent &&
+        e.target instanceof HTMLButtonElement){
+            e.target.classList.toggle('focus');
+        }
+}
+
+
 
 
