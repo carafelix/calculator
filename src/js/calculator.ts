@@ -12,6 +12,7 @@ const log = document.querySelector('#log') as HTMLDivElement;
 const result = document.querySelector('#result') as HTMLDivElement;
 
 const allButtons = document.querySelectorAll('button');
+const pip = document.querySelector('audio');
 
 
 // ---------- operatorial variables
@@ -52,12 +53,12 @@ operators.forEach((n) => n.addEventListener('mousedown', (e)=>getOperator(e) ));
 equal?.addEventListener('mousedown', ()=>commandEqual());
 clear?.addEventListener('mousedown', ()=>clearAll());
 backspace?.addEventListener('mousedown', ()=>doBackspace());
-float?.addEventListener('mousedown', ()=>addFloat());
+float?.addEventListener('mousedown', ()=>addFloat());   
 
 allButtons.forEach((b)=>b.addEventListener('mousedown', (e)=>buttonColor(e)));
 allButtons.forEach((b)=>b.addEventListener('mouseup', (e)=>buttonColor(e)));
 
-document.addEventListener('keydown', (e)=>keyboardSupport(e));
+window.addEventListener('keydown', (e)=>keyboardSupport(e));
 window.addEventListener('keydown', (e)=>keyboardColor(e));
 window.addEventListener('keyup', (e)=>keyboardUnColor(e));
 
@@ -66,7 +67,7 @@ window.addEventListener('keyup', (e)=>keyboardUnColor(e));
 
 // add number to operand, if A as a value, add it to B
 
-function getOperand(e: Event){
+function getOperand(e: Event | Element){
 
     if (toggle === true && operator == ''){
         preOperandA = '';
@@ -87,9 +88,9 @@ function getOperand(e: Event){
             }
         updateLog()    
 
-    } else if (e instanceof MouseEvent &&
+    } else if ((e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
-        e.target.dataset.key &&
+        e.target.dataset.key) &&
         preOperandA !== '' && operator !== ''){
 
             if(e.target.dataset.key === 'pi'){
@@ -98,7 +99,28 @@ function getOperand(e: Event){
                 preOperandB += e.target.dataset.key;
             }
         updateLog()
-        }
+
+    } else if (e instanceof HTMLButtonElement &&
+               preOperandB === '' && operator === ''){
+
+            if(e.dataset.key === 'pi'){
+                preOperandA = '3.141'
+            } else{
+                preOperandA += e.dataset.key;
+            }
+        updateLog()
+
+    } else if (e instanceof HTMLButtonElement &&
+        preOperandA !== '' && operator !== ''){
+            if(e.dataset.key === 'pi'){
+                preOperandB = '3.141'
+            } else{
+                preOperandB += e.dataset.key;
+            }
+        updateLog()
+
+    }
+
 }
 
 function getOperator(e: Event){
@@ -170,6 +192,11 @@ function doBackspace(){
         holdmethis.pop();
         preOperandA = holdmethis.join('');
     }
+    else {
+        let veet = pip?.cloneNode() as HTMLAudioElement;
+        veet.volume = 0.3;
+        veet?.play();
+    }
     updateLog()
 }
 
@@ -194,9 +221,22 @@ function buttonColor(e: Event){
         }
 }
 
-function keyboardSupport(e: Event){
+function keyboardSupport(e: KeyboardEvent){
+    
+    const presi = document.querySelector(`button[data-key="${e.key}"]`) as HTMLButtonElement;
+    
+    if (presi){
+        getOperand(e);
+    }
 
-}
+    // ifgetOperand(e) ));
+    // operators.forEach((n) => n.addEventListener('mousedown', (e)=>getOperator(e) ));
+    // equal?.addEventListener('mousedown', ()=>commandEqual());
+    // clear?.addEventListener('mousedown', ()=>clearAll());
+    // backspace?.addEventListener('mousedown', ()=>doBackspace());
+    // float?.addEventListener('mousedown', ()=>addFloat());   
+
+};
 
 function keyboardColor(e: KeyboardEvent){
     const press = document.querySelector(`button[data-key="${e.key}"]`) as HTMLButtonElement;
