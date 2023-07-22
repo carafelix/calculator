@@ -61,9 +61,9 @@ function operate(a:number | string, op:string,  b:number) :number {
 
 numbers.forEach((n) => n.addEventListener('click', (e)=>getOperand(e) ));
 operators.forEach((n) => n.addEventListener('click', (e)=>getOperator(e) ));
-equal?.addEventListener('click', ()=>commandEqual());
-clear?.addEventListener('click', ()=>clearAll());
-float?.addEventListener('click', ()=>addFloat())
+equal!.addEventListener('click', ()=>commandEqual());
+clear!.addEventListener('click', ()=>clearAll());
+float!.addEventListener('click', ()=>addFloat())
 
 
 // add number to operand, if A as a value, add it to B
@@ -79,7 +79,7 @@ function getOperand(e: Event){
             } else{
                 preOperandA += e.target.dataset.key;
             }
-        updateLog()    
+        updateLog(preOperandA,operator,preOperandB)    
 
     } else if (e instanceof MouseEvent &&
         e.target instanceof HTMLButtonElement &&
@@ -91,7 +91,7 @@ function getOperand(e: Event){
             } else{
                 preOperandB += e.target.dataset.key;
             }
-        updateLog()
+        updateLog(preOperandA,operator,preOperandB)
         }
 }
 
@@ -105,7 +105,7 @@ function getOperator(e: Event){
                operator = e.target.dataset.key
     }
 
-    updateLog()
+    updateLog(preOperandA,operator,preOperandB)
 
 }
 
@@ -117,6 +117,7 @@ function commandEqual(){
 
 
         updateResult(operate(operandA,operator,operandB));
+        
 
     }
 }
@@ -124,16 +125,16 @@ function commandEqual(){
 function updateResult(n:number){
 
     result.innerText = n.toLocaleString('en');    
-    log.innerText = `${preOperandA} ${operator} ${preOperandB} =`;
-
     preOperandA = `${n}`
     preOperandB = '';
     operator = '';
 
 }
 
-function updateLog(){
-        log.innerText = `${preOperandA} ${operator} ${preOperandB}`
+function updateLog(a:string,op:string,b:string){
+        let an = +(a)
+        let bn = +(b)
+        result.innerText = `${a} ${operator} ${b}`
 }
 
 function clearAll(){
