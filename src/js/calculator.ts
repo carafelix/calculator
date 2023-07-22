@@ -8,8 +8,8 @@ const equal = document.querySelector('#equal');
 const backspace = document.querySelector('#backspace');
 const clear = document.querySelector('#clear');
 
-const log = document.querySelector('#log');
-const result = document.querySelector('#result');
+const log = document.querySelector('#log') as HTMLDivElement;
+const result = document.querySelector('#result') as HTMLDivElement;
 
 
 // ---------- operatorial variables
@@ -62,6 +62,7 @@ function operate(a:number | string, op:string,  b:number) :number {
 numbers.forEach((n) => n.addEventListener('click', (e)=>asignOperand(e) ));
 operators.forEach((n) => n.addEventListener('click', (e)=>asignOperator(e) ));
 equal!.addEventListener('click', ()=>commandEqual());
+clear!.addEventListener('click', ()=>clearAll())
 
 
 // add number to operand, if A as a value, add it to B
@@ -100,11 +101,32 @@ function asignOperator(e: Event){
 
 function commandEqual(){
     if (preOperandA !== '' && operator !== '' && preOperandB !== '') {
+        
         let operandA = +(preOperandA);
         let operandB = +(preOperandB);
-        console.log(operate(operandA,operator,operandB))
-        return operate(operandA,operator,operandB).toFixed(3)
+
+
+        updateResult(operate(operandA,operator,operandB));
+
     }
 }
 
+function updateResult(n:number){
+    if (result){
+        result.innerText = n.toLocaleString('en');
+    }
+
+    preOperandA = `${n}`
+    preOperandB = '';
+    operator = '';
+
+}
+
+function clearAll(){
+    preOperandA = '';
+    preOperandB = '';
+    operator = '';
+    result.innerText = '0';
+    log.innerText = '';
+}
 
