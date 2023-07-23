@@ -19,3 +19,4 @@ Proyect assignment from [The Odin Proyect](https://www.theodinproject.com/lesson
 - If a result is active on memory, you can work with that result if applying any other operator, if any other number is press, previous result is cleared out.
 - π button
 - Add, Substract, Multiply, Divide, Factor, and Modulo operations. 
+- Best ding for backspace limit reached, in existance
