@@ -51,9 +51,9 @@ function operate(a:number | string, op:string,  b:number) :number {
 numbers.forEach((n) => n.addEventListener('mousedown', (e)=>getOperand(e) ));
 operators.forEach((n) => n.addEventListener('mousedown', (e)=>getOperator(e) ));
 equal?.addEventListener('mousedown', ()=>commandEqual());
-clear?.addEventListener('mousedown', ()=>clearAll());
-backspace?.addEventListener('mousedown', ()=>doBackspace());
-float?.addEventListener('mousedown', ()=>addFloat());   
+clear?.addEventListener('mousedown', ()=>commandClearAll());
+backspace?.addEventListener('mousedown', ()=>commandBackspace());
+float?.addEventListener('mousedown', ()=>commandAddFloat());   
 
 allButtons.forEach((b)=>b.addEventListener('mousedown', (e)=>buttonColor(e)));
 allButtons.forEach((b)=>b.addEventListener('mouseup', (e)=>buttonColor(e)));
@@ -109,12 +109,12 @@ function getOperand(e: Event){
                     updateLog()    
 
             } else if (e instanceof KeyboardEvent &&
-                e.key &&
-                preOperandA !== '' && operator !== ''){
+                       e.key &&
+                       preOperandA !== '' && operator !== ''){
 
-                    preOperandB += e.key;
-                    updateLog()
-                }
+                            preOperandB += e.key;
+                            updateLog()
+                        }
 } 
 
 
@@ -126,7 +126,14 @@ function getOperator(e: Event){
         preOperandA !== '' && preOperandB === ''){
             
                operator = e.target.dataset.key
-    }
+
+    } else if (e instanceof KeyboardEvent &&
+               e.key &&
+               preOperandA !== '' && operator === ''){
+                    console.log(e)
+                    operator = e.key;
+
+               }
 
     updateLog()
 
@@ -163,7 +170,7 @@ function updateLog(){
         log.innerText = `${preOperandA} ${operator} ${preOperandB}`
 }
 
-function clearAll(){
+function commandClearAll(){
     preOperandA = '';
     preOperandB = '';
     operator = '';
@@ -171,7 +178,7 @@ function clearAll(){
     log.innerText = '';
 }
 
-function doBackspace(){
+function commandBackspace(){
     if (preOperandB){
         let holdmethis = preOperandB.split('');
         holdmethis.pop();
@@ -195,7 +202,7 @@ function doBackspace(){
     updateLog()
 }
 
-function addFloat(){
+function commandAddFloat(){
 
     if (preOperandB){
         if (!preOperandB.includes('.')){
@@ -220,21 +227,24 @@ function keyboardSupport(e: KeyboardEvent){
     
     const pressNum = document.querySelector(`.num[data-key="${e.key}"]`) as HTMLButtonElement;
     const pressOp = document.querySelector(`.op[data-key="${e.key}"]`) as HTMLButtonElement;
+    const pressFloat = document.querySelector(`.float[data-key="${e.key}"]`) as HTMLButtonElement;
+    const pressEqual = document.querySelector(`.equal[data-key="${e.key}"]`) as HTMLButtonElement;
+    const pressClear = document.querySelector(`.clear[data-key="${e.key}"]`) as HTMLButtonElement;
+    const pressBackspace = document.querySelector(`.backspace[data-key="${e.key}"]`) as HTMLButtonElement;
     
     if (pressNum){
         getOperand(e);
+    } else if (pressOp){
+        getOperator(e)
+    } else if (pressFloat){
+        commandAddFloat();
+    } else if (pressEqual){
+        commandEqual();
+    } else if (pressClear){
+        commandClearAll()
+    } else if (pressBackspace){
+        commandBackspace()
     }
-    if (pressOp){
-        getOperand(e)
-    }
-
-    // ifgetOperand(e) ));
-    // operators.forEach((n) => n.addEventListener('mousedown', (e)=>getOperator(e) ));
-    // equal?.addEventListener('mousedown', ()=>commandEqual());
-    // clear?.addEventListener('mousedown', ()=>clearAll());
-    // backspace?.addEventListener('mousedown', ()=>doBackspace());
-    // float?.addEventListener('mousedown', ()=>addFloat());   
-
 };
 
 function keyboardColor(e: KeyboardEvent){
