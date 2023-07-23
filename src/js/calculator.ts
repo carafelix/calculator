@@ -67,7 +67,8 @@ window.addEventListener('keyup', (e)=>keyboardUnColor(e));
 
 // add number to operand, if A as a value, add it to B
 
-function getOperand(e: Event | Element){
+function getOperand(e: Event){
+    console.log(e);
 
     if (toggle === true && operator == ''){
         preOperandA = '';
@@ -100,28 +101,22 @@ function getOperand(e: Event | Element){
             }
         updateLog()
 
-    } else if (e instanceof HTMLButtonElement &&
-               preOperandB === '' && operator === ''){
+    } else if (e instanceof KeyboardEvent &&
+               e.key &&
+               operator === '' && preOperandB === ''){
 
-            if(e.dataset.key === 'pi'){
-                preOperandA = '3.141'
-            } else{
-                preOperandA += e.dataset.key;
-            }
-        updateLog()
+                    preOperandA += e.key;
+                    updateLog()    
 
-    } else if (e instanceof HTMLButtonElement &&
-        preOperandA !== '' && operator !== ''){
-            if(e.dataset.key === 'pi'){
-                preOperandB = '3.141'
-            } else{
-                preOperandB += e.dataset.key;
-            }
-        updateLog()
+            } else if (e instanceof KeyboardEvent &&
+                e.key &&
+                preOperandA !== '' && operator !== ''){
 
-    }
+                    preOperandB += e.key;
+                    updateLog()
+                }
+} 
 
-}
 
 function getOperator(e: Event){
 
@@ -223,10 +218,14 @@ function buttonColor(e: Event){
 
 function keyboardSupport(e: KeyboardEvent){
     
-    const presi = document.querySelector(`button[data-key="${e.key}"]`) as HTMLButtonElement;
+    const pressNum = document.querySelector(`.num[data-key="${e.key}"]`) as HTMLButtonElement;
+    const pressOp = document.querySelector(`.op[data-key="${e.key}"]`) as HTMLButtonElement;
     
-    if (presi){
+    if (pressNum){
         getOperand(e);
+    }
+    if (pressOp){
+        getOperand(e)
     }
 
     // ifgetOperand(e) ));
