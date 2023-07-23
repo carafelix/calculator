@@ -4,6 +4,4 @@
 *.scss.map
 /.vscode/
 tsconfig.json
-*.css
 *.map
-*.js

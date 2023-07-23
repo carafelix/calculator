@@ -1,0 +1,252 @@
+@charset "UTF-8";
+button, input[type=submit], input[type=reset] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -moz-user-select: none;
+  font-family: "Ubuntu", Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  color: #f6f4dd;
+  transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+html {
+  min-height: 100vh;
+  min-width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #181818;
+  flex-grow: 0;
+}
+
+#calculator {
+  background-color: #2c2c2c;
+  border-radius: 15px;
+  box-shadow: 1px 2px 12px 2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.18);
+  padding: 10px;
+  padding-top: 20px;
+}
+
+#display > * {
+  font-family: "digital-7_italicitalic";
+  font-size: 2.125em;
+  letter-spacing: 1.5px;
+  margin: 5px;
+  border: 1px solid #181818;
+  border-radius: 5px;
+  text-align: right;
+  overflow: scroll;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+#display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#log {
+  font-size: 1.5em;
+  padding: 10px;
+  background-color: #252525;
+  height: 1.7em;
+  width: 314px;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+#result {
+  background-color: #272727;
+  margin-bottom: 10px;
+  min-height: 70px;
+  width: 314px;
+  padding: 15px;
+}
+
+#interface {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  min-width: 260px;
+  padding: 10px;
+}
+#interface * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f6f4dd;
+}
+#interface * button {
+  flex: 1;
+  border: 1px solid #181818;
+}
+#interface button {
+  min-width: 55px;
+  min-height: 50px;
+  border-radius: 5px;
+}
+#interface #zero {
+  grid-row: 5;
+}
+#interface #one {
+  grid-row: 4;
+}
+#interface #two {
+  grid-row: 4;
+}
+#interface #three {
+  grid-row: 4;
+}
+#interface #forth {
+  grid-row: 3;
+}
+#interface #five {
+  grid-row: 3;
+}
+#interface #six {
+  grid-row: 3;
+}
+#interface #seven {
+  grid-row: 2;
+}
+#interface #eigth {
+  grid-row: 2;
+}
+#interface #nine {
+  grid-row: 2;
+}
+#interface #backspace {
+  grid-row: 1;
+  grid-column: 6/5;
+  font-size: 12px;
+}
+#interface #clear {
+  grid-row: 1;
+  grid-column: 1/3;
+}
+#interface #float {
+  grid-row: 5;
+  grid-column: 2/4;
+}
+#interface #modulo {
+  grid-row: 2;
+  grid-column: 5;
+}
+#interface #add {
+  grid-row: 5;
+  grid-column: 4;
+}
+#interface #sub {
+  grid-row: 4;
+  grid-column: 4;
+}
+#interface #divide {
+  grid-row: 2;
+  grid-column: 4;
+}
+#interface #divide button span {
+  position: relative;
+  visibility: hidden;
+}
+#interface #divide button span::after {
+  content: "÷";
+  position: absolute;
+  visibility: visible;
+  pointer-events: none;
+}
+#interface #multiply {
+  grid-row: 3;
+  grid-column: 4;
+}
+#interface #multiply button span {
+  position: relative;
+  visibility: hidden;
+}
+#interface #multiply button span::after {
+  content: "×";
+  position: absolute;
+  visibility: visible;
+  pointer-events: none;
+}
+#interface #factor {
+  grid-row: 3;
+  grid-column: 5;
+}
+#interface #equal {
+  grid-row: 6/4;
+  grid-column: 5;
+}
+#interface #equal button {
+  min-height: 106px;
+}
+#interface #pi {
+  grid-row: 1;
+  grid-column: 3;
+}
+#interface #git {
+  grid-row: 1;
+  grid-column: 4;
+}
+#interface #git a button img {
+  pointer-events: none;
+  width: 35px;
+  height: 35px;
+}
+#interface #git a button.focus {
+  background-color: #151515;
+}
+
+back button {
+  background-color: #373737;
+}
+
+button:hover {
+  background-color: #3c3c3c;
+}
+
+button.grey.focus {
+  background-color: #151515;
+}
+
+button.backspace {
+  background-color: #a21223;
+}
+
+button.backspace:hover {
+  background-color: #ab1325;
+}
+
+button.backspace.focus {
+  background-color: #700c18;
+}
+
+button.equal {
+  background-color: #0d761d;
+}
+
+button.equal:hover {
+  background-color: #0e7f1f;
+}
+
+button.equal.focus {
+  background-color: #074310;
+}/*# sourceMappingURL=style.css.map */
