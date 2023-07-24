@@ -20,3 +20,6 @@ Proyect assignment from [The Odin Proyect](https://www.theodinproject.com/lesson
 - π button
 - Add, Substract, Multiply, Divide, Factor, and Modulo operations. 
 - Best ding for backspace limit reached, in existance
+
+### Possible extras?
+- Could implement if '=' is press again repeat the same operation
