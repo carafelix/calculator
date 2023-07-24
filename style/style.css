@@ -52,8 +52,11 @@ body {
   border-radius: 5px;
   text-align: right;
   overflow: scroll;
+  overflow-y: none;
   white-space: nowrap;
   display: inline-block;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 #display {
@@ -61,6 +64,14 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+#result::-webkit-scrollbar {
+  display: none;
+}
+
+#log::-webkit-scrollbar {
+  display: none;
 }
 
 #log {

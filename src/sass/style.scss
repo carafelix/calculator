@@ -74,14 +74,25 @@
         border-radius: 5px;
         text-align: right;
         overflow: scroll;
+        overflow-y: none;
         white-space: nowrap;
         display: inline-block;
+        -ms-overflow-style: none;
+        scrollbar-width: none; 
 
     }
 
     #display{
         @include flexC();
         flex-direction: column;
+    }
+
+    #result::-webkit-scrollbar{
+        display: none;
+    }
+    
+    #log::-webkit-scrollbar{
+        display: none;
     }
     
     #log{
@@ -92,6 +103,7 @@
         width: 314px;
         align-items: center;
         overflow-y: hidden;
+        
     }
 
     #result{
