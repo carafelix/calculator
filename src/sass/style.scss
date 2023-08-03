@@ -252,7 +252,7 @@
                             height: 35px;
                         }
                     }
-                    button.focus{
+                    button.focus{ // oh my lord I should have use :active
                         background-color: #151515;
                     }
                 }
